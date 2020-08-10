@@ -29,4 +29,5 @@ build/
 
 ### VS Code ###
 .vscode/
+node_modules/
 LOG_PATH_IS_UNDEFINED

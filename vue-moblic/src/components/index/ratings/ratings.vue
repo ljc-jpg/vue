@@ -80,7 +80,6 @@ import splite from "../split/split";
 import star from "../star/star";
 
 import BScroll from "better-scroll";
-import { formatDate } from "../../../common/js/util.js";
 import datas from "../../../../data.json";
 
 export default {

@@ -81,8 +81,7 @@
 
 <script type="text/ecmascript-6">
 import star from "../star/star";
-import {sendAjax} from "../../../common/js/util.js";
-import $ from 'jquery'
+import utils from "../../../common/js/util.js";
 
 export default {
   name: "Header",
@@ -104,22 +103,20 @@ export default {
   created() {
     this.classMap = ["decrease", "discount", "guarantee", "invoice", "special"];
     let data = {
-      "id":"16592598d4f5416f84769832a28b6de5"
-    } 
-    
-    $.ajax({
-      type : "POST", //提交方式 
-      data : data,
-      url : "http://localhost:8749/user/selectByUserId",//路径 
-      success : function(result) {//返回数据根据结果进行相应的处理 
-        if ( result.returnCode ==1 ) { 
-          console.log(result.data)
-        } else { 
-          console.log('test/searchTest调用失败')
-        } 
-      } 
-    }); 
-    
+      "userId":"16592598d4f5416f84769832a28b6de5"
+    }
+    //位登录设置请求设置token
+    utils.setCookie("token","eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjgzMDE4NzhiNzZiMzRkMmY5ZTMzNGViMDBlM2NlMGM5IiwiZXhwIjoxNTk3MDI5NTM4LCJ1c2VyIjoiY29tLmNsb3VkLm1vZGVsLlVzZXJAMTkyMWYxNDAifQ.mL-SbFYMci_FLIdTF1_JyjiGOpLvxEQ1iY4NsK8stdM")
+    utils.requestFormData("/user/selectByUser",'get', data,
+      function (res) {
+       console.log(res);
+      },
+      function () {
+        console.log("error");
+      },
+      false,
+      '/cas-server'
+    );
   },
   methods: {
     showDeatil(e) {

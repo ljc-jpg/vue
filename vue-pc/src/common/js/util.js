@@ -17,7 +17,6 @@ export default {
   },
   requestFormData: function (path, type, data, successCallback, errorCallback, async, oUrl) {
     let sUrl = this.dom + oUrl + path;
-    console.log(sUrl)
     $.ajax({
       url: sUrl,
       type: type,

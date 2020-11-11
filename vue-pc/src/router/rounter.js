@@ -3,26 +3,25 @@ import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 
 //首页组件
-import Index from '@/components/index/Index';
+const Index = ()=>import("@/components/index/Index")
 
 //登录
-import Login from '@/components/login/Login';
+const Login = ()=>import("@/components/login/Login")
 
 //班级圈
-import ClassCircle from '@/components/classCircle/ClassCircle'
+const ClassCircle = ()=>import("@/components/classCircle/ClassCircle")
 
 //班级圈管理
-import Circle from '@/components/classCircle/Circle'
+const Circle = ()=>import("@/components/classCircle/Circle")
 
 //工资管理
-import Profile from '@/components/schProfile/Profile'
+const Profile = ()=>import("@/components/schProfile/Profile")
 
 //工资审批
-import SchProfile from '@/components/schProfile/SchProfile'
+const SchProfile = ()=>import("@/components/schProfile/SchProfile")
 
 //404
-import NotFoundComponent from '@/components/login/NotFoundComponent'
-
+const NotFoundComponent = ()=>import("@/components/login/NotFoundComponent")
 
 Vue.use(VueResource);
 Vue.use(VueRouter);
@@ -51,22 +50,14 @@ let routes = [{
     ]
   },
   {
-    path: '/',
+    path: '/classCircle',
     name: 'classCircle',
-    component: ClassCircle,
-    children: [{
-      path: '/classCircle',
-      component: ClassCircle
-    }]
+    component: ClassCircle
   },
   {
     path: '/schProfile',
     name: 'schProfile',
-    component: SchProfile,
-    children: [{
-      path: '/schProfile',
-      component: SchProfile
-    }]
+    component: SchProfile
   }
 ];
 
@@ -76,6 +67,10 @@ let router = new VueRouter({
   // , mode: 'history'
 });
 
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 //制定默认进入的页面
 router.push('/circle');
 export default router;

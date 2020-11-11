@@ -18,8 +18,8 @@
 </template>
 
 <script type="text/ecmascript-6">
-import LeftMenu from "./LeftMenu.vue";
-import Top from "./Top.vue";
+const LeftMenu = () => import("./LeftMenu");
+const Top = () => import("./Top");
 
 import utils from "../../common/js/util.js";
 
@@ -47,20 +47,20 @@ export default {
       "token",
       "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjkyYjE3Mzg5MjViNzQ5OTVhODc5Y2QwMzkxOGFmODA2IiwiZXhwIjoxNTk3MjgzODA4LCJ1c2VyIjoiY29tLmNsb3VkLm1vZGVsLlVzZXJANWU0YjFmYjUifQ.J_rTIDx-WEiUdV_e06Gq6ouYVX6OgY-oZfhLgiabEF8"
     );
-    utils.requestFormData(
-      "/user/selectByUser",
-      "get",
-      data,
-      function(res) {
-        console.log(res);
-        that.routers = res.data;
-      },
-      function() {
-        console.log("error");
-      },
-      false,
-      "/cas-server"
-    );
+    // utils.requestFormData(
+    //   "/user/selectByUser",
+    //   "get",
+    //   data,
+    //   function(res) {
+    //     console.log(res);
+    //     that.routers = res.data;
+    //   },
+    //   function() {
+    //     console.log("error");
+    //   },
+    //   false,
+    //   "/cas-server"
+    // );
   },
   components: {
     "v-menu": LeftMenu,
@@ -84,12 +84,13 @@ export default {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  background: #e7e7e7;
+  // background: red;
 }
 
 .top {
   height: 10%;
   width: 100%;
-  background-color: #f8f8f8;
 }
 
 .left {
@@ -99,9 +100,9 @@ export default {
 }
 
 .right {
-  width: 85%;
-  height: 90%;
+  width: 84%;
+  height: 89%;
   overflow: hidden;
-  float: right;
+  float: left;
 }
 </style>

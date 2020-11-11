@@ -1,6 +1,6 @@
 <template>
   <div class="all">
-    <p>profile</p>
+    <router-link to="/circle">profile</router-link>
   </div>
 </template>
 

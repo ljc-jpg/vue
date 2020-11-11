@@ -1,10 +1,16 @@
 <template>
   <div class="menu">
     <div class="top-menu border-1px">
+      <div class="content">
+        <el-button type="danger">危险按钮</el-button>
+      </div>
       <input v-model="query">
     </div>
 
     <div class="middle-menu">
+      <div class="content">
+        <el-button type="danger">危险按钮</el-button>
+      </div>
       <div class="middle-content">
         <transition-group
           name="staggered-fade"
@@ -79,13 +85,14 @@ export default {
 }
 .top-menu {
   height: 10%;
-  color: #432;
-  @include border-1px(green);
+  // @include border-1px(green);
+  background: #432;
 }
 .middle-menu {
   height: 100%;
   overflow: auto;
-  @include border-1px(red);
+  // @include border-1px(red);
+  background: #179a16;
   .middle-content {
     height: 300%;
   }

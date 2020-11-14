@@ -1,16 +1,22 @@
 <template>
   <div class="all">
-    <div class="top"></div>
+    <div class="header"></div>
 
-    <div class="left"></div>
-
-    <div class="main"></div>
+    <div class="main">
+      <!--包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们 -->
+      <router-view v-slot="{ Component }">
+        <component :is="Component" />
+      </router-view>
+    </div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, watch, ref } from "vue";
 
-export default defineComponent({});
+export default defineComponent({
+  name: "Index",
+  components: {},
+});
 </script>
 
 <style scoped lang="scss">
@@ -18,27 +24,21 @@ export default defineComponent({});
   height: 100%;
   width: 100%;
   overflow: hidden;
-  background: red;
 }
 
-.top {
+.header {
   height: 10%;
   width: 100%;
   background: #e7e7e7;
 }
 
-.left {
-  height: 90%;
-  width: 15%;
-  float: left;
-  background: #a7a7a7;
-}
-
 .main {
-  width: 84%;
-  height: 89%;
-  overflow: hidden;
+  width: 100%;
+  height: 90%;
+  overflow: auto;
   float: left;
-  background: #b7c7c7;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 </style>

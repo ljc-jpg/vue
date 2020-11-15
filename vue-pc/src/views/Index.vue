@@ -1,6 +1,8 @@
 <template>
-  <div class="all">
-    <div class="header"></div>
+  <div class="all container">
+    <div class="header">
+      <v-header :user="user"></v-header>
+    </div>
 
     <div class="main">
       <!--包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们 -->
@@ -12,10 +14,24 @@
 </template>
 <script lang="ts">
 import { defineComponent, watch, ref } from "vue";
+import VHeader from "../components/Header.vue";
+import { UserProps } from "../components/Header.vue";
 
+const user = {
+  isLogin: true,
+  name: "zhuzheng",
+  id: 1,
+};
 export default defineComponent({
   name: "Index",
-  components: {},
+  components: {
+    VHeader,
+  },
+  setup() {
+    return {
+      user: user,
+    };
+  },
 });
 </script>
 

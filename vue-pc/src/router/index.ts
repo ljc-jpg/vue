@@ -1,30 +1,31 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw  } from 'vue-router'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 
 
-import login from '../views/Login/Login.vue'
+import login from '../views/Login.vue'
 
-import index from '../views/Index/Index.vue'
+import index from '../views/Index.vue'
 
-import pay from '../views/Pay/Pay.vue'
+import pay from '../views/Pay.vue'
 
-import profile from '../views/Profile/Profile.vue'
+import profile from '../views/Profile.vue'
 
 const routes: Array<RouteRecordRaw> = [
   //默认路由地址
   {
     path: '/',
-    redirect: '/index/pay',
+    redirect: 'login',
   },
+
   {
-    path: '/login',
-    name: 'login',
-    component: login,
-  },
-  {
-    path: '/index',
+    path: '/',
     name: 'index',
     component: index,
-    children: [{
+    children: [
+      {
+        path: 'login',
+        name: 'login',
+        component: login,
+      }, {
         path: 'pay',
         component: pay
       },
@@ -40,6 +41,6 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes,
 })
- 
+
 //制定默认进入的页面
 export default router

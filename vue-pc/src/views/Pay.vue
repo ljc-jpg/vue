@@ -6,9 +6,8 @@
 
 <script lang="ts">
 import { defineComponent, watch, ref } from "vue";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { ColumnProps } from "../../components/ColumnList.vue";
-import ColumnList from "../../components/ColumnList.vue";
+import { ColumnProps } from "../components/ColumnList.vue";
+import ColumnList from "../components/ColumnList.vue";
 
 const Data: ColumnProps[] = [
   {

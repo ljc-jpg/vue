@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted, onUnmounted, watch } from "vue";
-import useClickOutSide from "../hooks/useClickOutside";
+import useClickOutSide from "../../hooks/useClickOutside";
 
 export default defineComponent({
   name: "DropDown",

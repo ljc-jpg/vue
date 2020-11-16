@@ -26,8 +26,8 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, ref } from "vue";
-import ValidateInput from "../components/ValidateInput.vue";
-import { RulesProp } from "../components/ValidateInput.vue";
+import ValidateInput from "../components/form/ValidateInput.vue";
+import { RulesProp } from "../components/form/ValidateInput.vue";
 
 export default defineComponent({
   name: "Login",

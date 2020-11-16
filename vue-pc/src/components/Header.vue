@@ -24,8 +24,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import DropDown from "./DropDown.vue";
-import DropDownItem from "./DropDownItem.vue";
+import DropDown from "./dropdown/DropDown.vue";
+import DropDownItem from "./dropdown/DropDownItem.vue";
 
 export interface UserProps {
   isLogin: boolean;

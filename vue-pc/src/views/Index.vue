@@ -1,10 +1,10 @@
 <template>
-  <div class="all container">
+  <div class="d-flex flex-column h-100">
     <div class="header">
       <v-header :user="user"></v-header>
     </div>
 
-    <div class="main">
+    <div class="home-page container-md main">
       <!--包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们 -->
       <router-view v-slot="{ Component }">
         <component :is="Component" />
@@ -49,10 +49,8 @@ export default defineComponent({
 }
 
 .main {
-  width: 100%;
   height: 90%;
   overflow: auto;
-  float: left;
   &::-webkit-scrollbar {
     display: none;
   }

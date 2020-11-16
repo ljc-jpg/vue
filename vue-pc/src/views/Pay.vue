@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-fluid px-0 flex-shrink-0">
     <column-list :list="list"></column-list>
   </div>
 </template>

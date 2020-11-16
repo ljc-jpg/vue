@@ -2,12 +2,13 @@
   <form action="">
     <div class="mb-3">
       <label class="form-label">电子邮箱地址</label>
-      <validate-input :rules="emailRules"></validate-input>
+      <validate-input :rules="emailRules" v-model="emailVal"></validate-input>
+      {{ emailVal }}
     </div>
   </form>
 </template>
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
+import { defineComponent, reactive, ref } from "vue";
 import ValidateInput from "../components/ValidateInput.vue";
 import { RulesProp } from "../components/ValidateInput.vue";
 
@@ -17,15 +18,16 @@ export default defineComponent({
     ValidateInput,
   },
   setup() {
+    const emailVal = ref("viking");
     const emailRules: RulesProp = [
       { type: "required", message: "电子邮箱不能为空" },
-      { type: "email", message: "电子邮箱格式不对" }
+      { type: "email", message: "电子邮箱格式不对" },
     ];
 
     return {
-      emailRules: emailRules,
+      emailRules,
+      emailVal,
     };
-    
   },
 });
 </script>

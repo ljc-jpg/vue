@@ -3,35 +3,35 @@
     <input
       type="text"
       class="form-control"
-      :class="{'is-invalid': inputRef.error}"
-      v-model="inputRef.val"
+      :class="{ 'is-invalid': inputRef.error }"
+      :value="inputRef.val"
       @blur="valiDateInput"
+      @input="updateValue"
     />
-    <span v-if="inputRef.error" class="invalid-feedback">{{inputRef.message}}</span>
+    <span v-if="inputRef.error" class="invalid-feedback">{{inputRef.message }}</span>
   </div>
-
-
 </template>
 <script lang="ts">
 import { defineComponent, reactive, PropType } from "vue";
 
 const emailReg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
 
-interface RuleProp  {
+interface RuleProp {
   type: "required" | "email";
   message: string;
-} 
+}
 
 export type RulesProp = RuleProp[];
 
 export default defineComponent({
-   props: {
-    rules: Array as PropType<RulesProp>
+  props: {
+    rules: Array as PropType<RulesProp>,
+    modelValue: String,
   },
 
-  setup(props) {
+  setup(props, context) {
     const inputRef = reactive({
-      val: "",
+      val: props.modelValue || "",
       error: false,
       message: "",
     });
@@ -56,11 +56,18 @@ export default defineComponent({
         inputRef.error = !allPassed;
       }
     };
+    const updateValue = (e: KeyboardEvent) => {
+      const targetValue = (e.target as HTMLInputElement).value;
+      inputRef.val = targetValue;
+      context.emit('update:modelValue', targetValue);
+    };
 
     return {
       inputRef,
       valiDateInput,
+      updateValue,
     };
   },
+
 });
 </script>

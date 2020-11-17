@@ -14,8 +14,8 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, PropType } from "vue";
-
+import { defineComponent, reactive, PropType, onMounted } from "vue";
+import { emitter } from "./ValidateForm.vue";
 const emailReg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
 
 interface RuleProp {
@@ -56,13 +56,18 @@ export default defineComponent({
           return passed;
         });
         inputRef.error = !allPassed;
+        return allPassed;
       }
+      return true;
     };
     const updateValue = (e: KeyboardEvent) => {
       const targetValue = (e.target as HTMLInputElement).value;
       inputRef.val = targetValue;
       context.emit("update:modelValue", targetValue);
     };
+    onMounted(() => {
+      emitter.emit("form-item-created", valiDateInput);
+    });
 
     return {
       inputRef,

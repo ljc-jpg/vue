@@ -7,7 +7,7 @@ import index from '../views/Index.vue'
 
 import home from '../views/Home.vue'
 
-import profile from '../views/Profile.vue'
+import column from '../views/ColumnDetail.vue'
 
 const routes: Array<RouteRecordRaw> = [
   //默认路由地址
@@ -31,8 +31,8 @@ const routes: Array<RouteRecordRaw> = [
         component: home
       },
       {
-        path: 'profile',
-        component: profile
+        path: 'column/:id',
+        component: column
       }
     ]
   }

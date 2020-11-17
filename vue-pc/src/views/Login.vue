@@ -34,6 +34,8 @@ import ValidateInput from "../components/form/ValidateInput.vue";
 import { RulesProp } from "../components/form/ValidateInput.vue";
 import ValidateForm from '../components/form/ValidateForm.vue';
 
+import {useRouter} from 'vue-router';
+
 export default defineComponent({
   name: "Login",
   components: {
@@ -44,6 +46,7 @@ export default defineComponent({
     //取到子组件方法
     const inputValidRef = ref<any>("");
     
+    const router = useRouter();
     //邮箱输入框值
     const emailVal = ref("");
     //密码输入框值
@@ -60,6 +63,9 @@ export default defineComponent({
 
     const onFormSubmit = (result:boolean) =>{
       console.log(inputValidRef.value.valiDateInput())
+      if(result){
+        router.push('/home');
+      }
     }
    
     return {

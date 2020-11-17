@@ -1,4 +1,5 @@
 <template>
+  <!--监听子组件事件函数  -->
   <ValidateForm @form-submit="onFormSubmit">
     <div class="mb-3">
       <label class="form-label">电子邮箱地址</label>
@@ -40,9 +41,14 @@ export default defineComponent({
     ValidateForm
   },
   setup() {
-    const emailVal = ref("");
-    const passWordVal = ref("");
+    //取到子组件方法
     const inputValidRef = ref<any>("");
+    
+    //邮箱输入框值
+    const emailVal = ref("");
+    //密码输入框值
+    const passWordVal = ref("");
+  
     const emailRules: RulesProp = [
       { type: "required", message: "电子邮箱不能为空" },
       { type: "email", message: "电子邮箱格式不对" },
@@ -51,6 +57,7 @@ export default defineComponent({
     const passWordRules: RulesProp = [
       { type: "required", message: "密码不能为空" },
     ];
+
     const onFormSubmit = (result:boolean) =>{
       console.log(inputValidRef.value.valiDateInput())
     }

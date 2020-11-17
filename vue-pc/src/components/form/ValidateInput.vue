@@ -65,6 +65,7 @@ export default defineComponent({
       inputRef.val = targetValue;
       context.emit("update:modelValue", targetValue);
     };
+    //创建输入框判断事件
     onMounted(() => {
       emitter.emit("form-item-created", valiDateInput);
     });

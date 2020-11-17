@@ -5,7 +5,7 @@ import login from '../views/Login.vue'
 
 import index from '../views/Index.vue'
 
-import pay from '../views/Pay.vue'
+import home from '../views/Home.vue'
 
 import profile from '../views/Profile.vue'
 
@@ -25,9 +25,10 @@ const routes: Array<RouteRecordRaw> = [
         path: 'login',
         name: 'login',
         component: login,
-      }, {
-        path: 'pay',
-        component: pay
+      }, 
+      {
+        path: 'home',
+        component: home
       },
       {
         path: 'profile',

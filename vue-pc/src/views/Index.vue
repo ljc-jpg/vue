@@ -1,8 +1,6 @@
 <template>
   <div class="d-flex flex-column h-100">
-    <div class="header">
-      <v-header :user="user"></v-header>
-    </div>
+    <v-header :user="user"></v-header>
 
     <div class="home-page container-md main">
       <!--包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们 -->
@@ -15,7 +13,6 @@
 <script lang="ts">
 import { defineComponent, watch, ref } from "vue";
 import VHeader from "../components/Header.vue";
-import { UserProps } from "../components/Header.vue";
 
 const user = {
   isLogin: true,
@@ -36,18 +33,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.all {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
-
-.header {
-  height: 10%;
-  width: 100%;
-  background: #e7e7e7;
-}
-
 .main {
   height: 90%;
   overflow: auto;

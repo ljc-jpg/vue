@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { ColumnProps } from '../interfaceData';
+import { ColumnProps } from '../store/index';
  
 
 export default defineComponent({

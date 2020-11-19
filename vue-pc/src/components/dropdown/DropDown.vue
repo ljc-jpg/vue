@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, onUnmounted, watch } from "vue";
+import { defineComponent, ref, watch } from "vue";
 import useClickOutSide from "../../hooks/useClickOutside";
 
 export default defineComponent({

@@ -28,13 +28,12 @@
   </ValidateForm>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, ref, onMounted , computed } from "vue";
+import { defineComponent, ref } from "vue";
 import ValidateInput from "../components/form/ValidateInput.vue";
 import ValidateForm from "../components/form/ValidateForm.vue";
 import { useRouter } from "vue-router";
 import { RulesProp } from '../store/index';
 import { useStore } from 'vuex';
-import { GlobalDataProps } from '../store/index'
 
 export default defineComponent({
   components: {

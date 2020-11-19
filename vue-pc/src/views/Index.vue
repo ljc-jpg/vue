@@ -13,12 +13,14 @@
 <script lang="ts">
 import { defineComponent, watch, ref } from "vue";
 import VHeader from "../components/Header.vue";
+import { UserProps } from '../testData';
 
-const user = {
-  isLogin: true,
+export const user = ref<UserProps>({
+  isLogin: false,
   name: "zhuzheng",
   id: 1,
-};
+}) 
+
 export default defineComponent({
   name: "Index",
   components: {
@@ -26,7 +28,7 @@ export default defineComponent({
   },
   setup() {
     return {
-      user: user,
+      user
     };
   },
 });

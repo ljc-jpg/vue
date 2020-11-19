@@ -4,7 +4,7 @@
 
     <ul v-if="!user.isLogin" class="list-inline mb-0" style="height: 100%">
       <li class="list-inline-item">
-        <a href="#" class="btn btn-outline-light my-2">登录</a>
+        <a href="login" class="btn btn-outline-light my-2">登录</a>
       </li>
       <li class="list-inline-item">
         <a href="#" class="btn btn-outline-light my-2">注册</a>
@@ -15,7 +15,7 @@
         <DropDown :title="`你好 ${user.name}`">
           <DropDownItem><a href="#" class="dropdown-item">新建文章</a></DropDownItem >
           <DropDownItem><a href="#" class="dropdown-item">编辑文章</a></DropDownItem>
-          <DropDownItem disabled><a href="#" class="dropdown-item">退出</a></DropDownItem >
+          <DropDownItem><a href="login" class="dropdown-item">退出</a></DropDownItem >
         </DropDown>
       </li>
     </ul>
@@ -26,12 +26,7 @@
 import { defineComponent, PropType } from "vue";
 import DropDown from "./dropdown/DropDown.vue";
 import DropDownItem from "./dropdown/DropDownItem.vue";
-
-export interface UserProps {
-  isLogin: boolean;
-  name?: string;
-  id?: number;
-}
+import { UserProps } from '../testData';
 
 export default defineComponent({
   props: {
@@ -43,6 +38,6 @@ export default defineComponent({
   components: {
     DropDown,
     DropDownItem,
-  },
+  }
 });
 </script>

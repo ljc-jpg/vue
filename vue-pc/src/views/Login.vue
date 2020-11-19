@@ -10,10 +10,9 @@
         type="text"
         ref="inputValidRef"
       ></validate-input>
-
     </div>
-    <div class="mb-3">
 
+    <div class="mb-3">
       <label class="form-label">密码</label>
       <validate-input
         :rules="passWordRules"
@@ -21,37 +20,38 @@
         placeholder="请输入密码"
         type="password"
       ></validate-input>
-
     </div>
+
     <template #submit>
       <span class="btn btn-danger">submit</span>
     </template>
   </ValidateForm>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, ref,onMounted } from "vue";
+import { defineComponent, reactive, ref, onMounted } from "vue";
 import ValidateInput from "../components/form/ValidateInput.vue";
 import { RulesProp } from "../components/form/ValidateInput.vue";
-import ValidateForm from '../components/form/ValidateForm.vue';
+import ValidateForm from "../components/form/ValidateForm.vue";
+import { user } from "../views/Index.vue";
 
-import {useRouter} from 'vue-router';
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "Login",
   components: {
     ValidateInput,
-    ValidateForm
+    ValidateForm,
   },
   setup() {
     //取到子组件方法
     const inputValidRef = ref<any>("");
-    
+
     const router = useRouter();
     //邮箱输入框值
-    const emailVal = ref("");
+    const emailVal = ref("11@qq.com");
     //密码输入框值
-    const passWordVal = ref("");
-  
+    const passWordVal = ref("11");
+
     const emailRules: RulesProp = [
       { type: "required", message: "电子邮箱不能为空" },
       { type: "email", message: "电子邮箱格式不对" },
@@ -61,20 +61,19 @@ export default defineComponent({
       { type: "required", message: "密码不能为空" },
     ];
 
-    const onFormSubmit = (result:boolean) =>{
-      console.log(inputValidRef.value.valiDateInput())
-      if(result){
-        router.push('/home');
+    const onFormSubmit = (result: boolean) => {
+      if (result) {
+        user.value.isLogin = true;
+        router.push("/home");
       }
-    }
-   
+    };
     return {
       emailRules,
       emailVal,
       passWordVal,
       passWordRules,
       onFormSubmit,
-      inputValidRef
+      inputValidRef,
     };
   },
 });

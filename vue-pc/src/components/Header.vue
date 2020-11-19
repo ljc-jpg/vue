@@ -26,7 +26,7 @@
 import { defineComponent, PropType } from "vue";
 import DropDown from "./dropdown/DropDown.vue";
 import DropDownItem from "./dropdown/DropDownItem.vue";
-import { UserProps } from '../testData';
+import { UserProps } from '../interfaceData';
 
 export default defineComponent({
   props: {

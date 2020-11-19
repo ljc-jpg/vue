@@ -11,15 +11,10 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, watch, ref } from "vue";
+import { defineComponent, watch, ref, computed } from "vue";
 import VHeader from "../components/Header.vue";
-import { UserProps } from '../testData';
-
-export const user = ref<UserProps>({
-  isLogin: false,
-  name: "zhuzheng",
-  id: 1,
-}) 
+import { useStore } from "vuex";
+import { GlobalDataProps } from "../store/index";
 
 export default defineComponent({
   name: "Index",
@@ -27,8 +22,10 @@ export default defineComponent({
     VHeader,
   },
   setup() {
+    const store = useStore<GlobalDataProps>();
+    const user = computed(() => store.state.user);
     return {
-      user
+      user,
     };
   },
 });

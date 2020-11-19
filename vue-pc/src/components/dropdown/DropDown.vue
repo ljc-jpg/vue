@@ -18,7 +18,6 @@ import { defineComponent, ref, onMounted, onUnmounted, watch } from "vue";
 import useClickOutSide from "../../hooks/useClickOutside";
 
 export default defineComponent({
-  name: "DropDown",
   props: {
     title: {
       type: String,

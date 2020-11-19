@@ -15,13 +15,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-
-export interface ColumnProps {
-  id: number;
-  title: string;
-  avatar: string;
-  description: string;
-}
+import { ColumnProps } from '../interfaceData';
+ 
 
 export default defineComponent({
   name: "ColumnList",

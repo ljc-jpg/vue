@@ -1,8 +1,30 @@
+
+import { ref } from "vue";
 export interface ColumnProps {
   id: number;
   title: string;
-  avatar?: string;
   description: string;
+  avatar?: string;
+}
+
+export interface PostProps {
+  id: number;
+  title: string;
+  content: string;
+  image?: string;
+  createdAt: string;
+  columnId: number;
+}
+
+export interface UserProps {
+  isLogin: boolean;
+  name?: string;
+  id?: number;
+}
+
+export interface RuleProp {
+  type: "required" | "email";
+  message: string;
 }
 
 export const testData: ColumnProps[] = [
@@ -32,16 +54,6 @@ export const testData: ColumnProps[] = [
   }
 ]
 
-
-export interface PostProps {
-  id: number;
-  title: string;
-  content: string;
-  image?: string;
-  createdAt: string;
-  columnId: number;
-}
-
 export const testPosts: PostProps[] = [
   {
     id: 1,
@@ -67,9 +79,3 @@ export const testPosts: PostProps[] = [
     columnId: 1
   }
 ]
-
-export interface UserProps {
-  isLogin: boolean;
-  name?: string;
-  id?: number;
-}

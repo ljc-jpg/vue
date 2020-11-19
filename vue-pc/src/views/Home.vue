@@ -5,17 +5,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent , computed } from "vue";
 import ColumnList from "../components/ColumnList.vue";
-import{ testData }from '../testData';
+import { useStore } from 'vuex';
+import { GlobalDataProps } from '../store/index'
 
 export default defineComponent({
   components: {
     ColumnList,
   },
   setup() {
+    const store = useStore<GlobalDataProps>();
+    //vuex响应式数据  store最简单获取数据方法 在计算属性中获取
+    const list = computed(()=> store.state.columns)
     return {
-      list: testData,
+      list
     };
   },
 });

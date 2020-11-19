@@ -16,14 +16,9 @@
 <script lang="ts">
 import { defineComponent, reactive, PropType, onMounted } from "vue";
 import { emitter } from "./ValidateForm.vue";
+import { RulesProp } from '../../store/index';
+
 const emailReg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
-
-interface RuleProp {
-  type: "required" | "email";
-  message: string;
-}
-
-export type RulesProp = RuleProp[];
 
 export default defineComponent({
   props: {

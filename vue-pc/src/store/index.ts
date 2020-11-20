@@ -1,4 +1,4 @@
-import { createStore, Store } from 'vuex'
+import { createStore } from 'vuex'
 
 export interface UserProps {
   isLogin: boolean;
@@ -98,9 +98,16 @@ export default createStore<GlobalDataProps>({
     posts: testPosts,
     user: user
   },
+  //store的方法 外部可以调用
   mutations: {
     login(state) {
       state.user.isLogin = true
+    }
+  },
+  //相当于vue的计算属性
+  getters: {
+    biggerColumnLength(state) {
+      return state.columns.filter(c => c.id > 2).length;
     }
   },
   actions: {

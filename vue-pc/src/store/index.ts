@@ -98,7 +98,7 @@ export default createStore<GlobalDataProps>({
     posts: testPosts,
     user: user
   },
-  //store的方法 外部可以调用
+  //store方法 改变state静态值 外部可以调用
   mutations: {
     login(state) {
       state.user.isLogin = true
@@ -108,6 +108,9 @@ export default createStore<GlobalDataProps>({
   getters: {
     biggerColumnLength(state) {
       return state.columns.filter(c => c.id > 2).length;
+    },
+    getColumnById(state, columnId) {
+      return state.posts.filter(c => c.columnId = columnId);
     }
   },
   actions: {

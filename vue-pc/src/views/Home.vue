@@ -11,7 +11,7 @@
     </div>
   </section>
   <h4 class="font-weight-bold text-center">发现精彩</h4>
-
+  {{length}}
   <div class="container-fluid px-0 flex-shrink-0">
     <column-list :list="list"></column-list>
   </div>
@@ -32,9 +32,10 @@ export default defineComponent({
     //vuex响应式数据  store最简单获取数据方法 在计算属性中获取
     const list = computed(() => store.state.columns);
     //调用store里getters中的方法
-    //  const length = computed(()=> store.getters.biggerColumnLength);
+    const length = computed(()=> store.getters.biggerColumnLength);
     return {
       list,
+      length
     };
   },
 });

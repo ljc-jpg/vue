@@ -1,16 +1,22 @@
 <template>
- <pre>{{route}}</pre>
+{{length}}
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 import { useRoute } from "vue-router";
+import { useStore } from "vuex";
+import { GlobalDataProps } from "../store/index";
 
 export default defineComponent({
   setup() {
-    const route = useRoute();
+    const route = useRoute().params;
+    const store = useStore<GlobalDataProps>();
+
+    const length = computed(() => store.getters);
+    console.log(length)
     return {
-        route
+      length
     };
   },
 });

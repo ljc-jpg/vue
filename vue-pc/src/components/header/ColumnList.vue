@@ -6,7 +6,7 @@
           <img :src="column.avatar" :alt="column.title" class="row-photo" />
           <h5 class="card-title">{{ column.title }}</h5>
           <p class="card-text text-left">{{ column.description }}</p>
-          <router-link :to="`column/${column.id}`" class="btn btn-outline-primary" >进入专栏</router-link >
+          <router-link :to="`/column/${column.id}`"  class="btn btn-outline-primary" >进入专栏</router-link>
         </div>
       </div>
     </div>
@@ -15,10 +15,9 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { ColumnProps } from "../store/index";
+import { ColumnProps } from "../../store/index";
 
 export default defineComponent({
-  name: "ColumnList",
   props: {
     list: {
       type: Array as PropType<ColumnProps[]>,

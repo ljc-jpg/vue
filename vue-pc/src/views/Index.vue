@@ -25,7 +25,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed } from "vue";
-import VHeader from "../components/Header.vue";
+import VHeader from "../components/header/Header.vue";
 import { useStore } from "vuex";
 import { GlobalDataProps } from "../store/index";
 

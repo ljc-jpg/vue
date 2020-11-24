@@ -15,7 +15,7 @@
         <DropDown :title="`你好 ${user.name}`">
           <DropDownItem><a href="#" class="dropdown-item">新建文章</a></DropDownItem >
           <DropDownItem><a href="#" class="dropdown-item">编辑文章</a></DropDownItem>
-          <DropDownItem><a href="login" class="dropdown-item">退出</a></DropDownItem >
+          <DropDownItem><a href="/" class="dropdown-item">退出</a></DropDownItem >
         </DropDown>
       </li>
     </ul>
@@ -24,9 +24,9 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import DropDown from "./dropdown/DropDown.vue";
-import DropDownItem from "./dropdown/DropDownItem.vue";
-import { UserProps } from '../store/index';
+import DropDown from "../dropdown/DropDown.vue";
+import DropDownItem from "../dropdown/DropDownItem.vue";
+import { UserProps } from '../../store/index';
 
 export default defineComponent({
   props: {

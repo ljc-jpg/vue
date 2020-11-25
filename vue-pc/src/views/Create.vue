@@ -3,39 +3,40 @@
   <ValidateForm @form-submit="onFormSubmit">
 
     <div class="mb-3">
-      <label class="form-label">电子邮箱地址</label>
+      <label class="form-label">标题</label>
       <validate-input
-        :rules="emailRules"
-        v-model="emailVal"
-        placeholder="请输入邮箱地址"
+        :rules="postContent"
+        v-model="titleVal"
+        placeholder="请输入标题"
         type="text"
         ref="inputValidRef"
       ></validate-input>
     </div>
 
     <div class="mb-3">
-      <label class="form-label">密码</label>
+      <label class="form-label">内容</label>
       <validate-input
-        :rules="passWordRules"
-        v-model="passWordVal"
-        placeholder="请输入密码"
-        type="password"
-      ></validate-input>
+        rows="10"
+        tag="textarea"
+        placeholder="请输入文章详情"
+        :rules="postContent"
+        v-model="contentVal"
+      />
     </div>
 
     <template #submit>
-      <span class="btn btn-danger">submit</span>
+      <span class="btn btn-primary">创建</span>
     </template>
-    
   </ValidateForm>
+  
 </template>
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import ValidateInput from "../components/form/ValidateInput.vue";
 import ValidateForm from "../components/form/ValidateForm.vue";
 import { useRouter } from "vue-router";
-import { RulesProp } from '../store/index';
-import { useStore } from 'vuex';
+import { RulesProp } from "../store/index";
+import { useStore } from "vuex";
 
 export default defineComponent({
   components: {
@@ -43,13 +44,8 @@ export default defineComponent({
     ValidateForm,
   },
   setup() {
-    const emailRules: RulesProp = [
-      { type: "required", message: "电子邮箱不能为空" },
-      { type: "email", message: "电子邮箱格式不对" },
-    ];
-
-    const passWordRules: RulesProp = [
-      { type: "required", message: "密码不能为空" },
+    const postContent: RulesProp = [
+      { type: "required", message: "内容不能为空" },
     ];
 
     //取到子组件方法
@@ -57,23 +53,22 @@ export default defineComponent({
 
     const router = useRouter();
     //邮箱输入框值
-    const emailVal = ref("11@qq.com");
+    const titleVal = ref("");
     //密码输入框值
-    const passWordVal = ref("11");
+    const contentVal = ref("");
 
     const store = useStore();
 
     const onFormSubmit = (result: boolean) => {
       if (result) {
-        router.push("/home");
-        store.commit('login');
+        // router.push("/home");
+        // store.commit('login');
       }
     };
     return {
-      emailRules,
-      emailVal,
-      passWordVal,
-      passWordRules,
+      postContent,
+      titleVal,
+      contentVal,
       onFormSubmit,
       inputValidRef,
     };

@@ -9,6 +9,8 @@ import home from '../views/Home.vue'
 
 import column from '../views/ColumnDetail.vue'
 
+import create from '../views/Create.vue'
+
 const routes: Array<RouteRecordRaw> = [
   //默认路由地址
   {
@@ -33,6 +35,10 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'column/:id',
         component: column
+      },
+      {
+        path: 'create',
+        component: create
       }
     ]
   }

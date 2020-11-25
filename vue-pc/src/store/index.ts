@@ -10,6 +10,8 @@ export interface RuleProp {
   message: string;
 }
 
+export type TagType = 'input' | 'textarea'
+
 export type RulesProp = RuleProp[];
 
 export interface ColumnProps {
@@ -90,7 +92,7 @@ export const testData: ColumnProps[] = [
 ]
 
 export const user = {
-  isLogin: false,
+  isLogin: true,
   name: "zhuzheng",
   id: 1,
 }

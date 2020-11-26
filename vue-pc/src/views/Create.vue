@@ -1,9 +1,9 @@
 <template>
   <!--监听子组件事件函数  -->
   <ValidateForm @form-submit="onFormSubmit">
-
+    <h4>新建文章</h4>
     <div class="mb-3">
-      <label class="form-label">标题</label>
+      <label class="form-label">文章标题：</label>
       <validate-input
         :rules="postContent"
         v-model="titleVal"
@@ -14,7 +14,7 @@
     </div>
 
     <div class="mb-3">
-      <label class="form-label">内容</label>
+      <label class="form-label">文章详情：</label>
       <validate-input
         rows="10"
         tag="textarea"
@@ -35,7 +35,7 @@ import { defineComponent, ref } from "vue";
 import ValidateInput from "../components/form/ValidateInput.vue";
 import ValidateForm from "../components/form/ValidateForm.vue";
 import { useRouter } from "vue-router";
-import { RulesProp } from "../store/index";
+import { PostProps, RulesProp } from "../store/index";
 import { useStore } from "vuex";
 
 export default defineComponent({
@@ -50,7 +50,6 @@ export default defineComponent({
 
     //取到子组件方法
     const inputValidRef = ref<any>("");
-
     const router = useRouter();
     //邮箱输入框值
     const titleVal = ref("");
@@ -58,11 +57,20 @@ export default defineComponent({
     const contentVal = ref("");
 
     const store = useStore();
-
     const onFormSubmit = (result: boolean) => {
       if (result) {
-        // router.push("/home");
-        // store.commit('login');
+        const { columnId } = store.state.user;
+        if (columnId) {
+          const newPost: PostProps = {
+            id: new Date().getTime(),
+            title: titleVal.value,
+            content: contentVal.value,
+            columnId,
+            createdAt: new Date().toLocaleString(),
+          };
+          store.commit("createPost", newPost);
+          router.push("/column/" + columnId);
+        }
       }
     };
     return {

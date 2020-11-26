@@ -4,6 +4,7 @@ export interface UserProps {
   isLogin: boolean;
   name?: string;
   id?: number;
+  columnId?: number
 }
 export interface RuleProp {
   type: "required" | "email";
@@ -26,7 +27,7 @@ export interface PostProps {
   title: string;
   content: string;
   image?: string;
-  createdAt: string;
+  createdAt?: string;
   columnId: number;
 }
 
@@ -92,9 +93,10 @@ export const testData: ColumnProps[] = [
 ]
 
 export const user = {
-  isLogin: true,
+  isLogin: false,
   name: "zhuzheng",
   id: 1,
+  columnId: 2
 }
 export interface GlobalDataProps {
   columns: ColumnProps[];
@@ -112,13 +114,13 @@ export default createStore<GlobalDataProps>({
   mutations: {
     login(state) {
       state.user.isLogin = true
+    },
+    createPost(state, newPost) {
+      state.posts.push(newPost);
     }
   },
   //相当于vue的计算属性
   getters: {
-    biggerColumnLength(state) {
-      return state.columns.filter(c => c.id > 2).length;
-    },
     getPostByColumnId: (state) => (columnId: number) => {
       return state.posts.filter(testPosts => testPosts.columnId == columnId)
     },

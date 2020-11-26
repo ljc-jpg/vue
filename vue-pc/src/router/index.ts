@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-
+import store from '../store/index'
 
 import login from '../views/Login.vue'
 
@@ -47,6 +47,14 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history:  createWebHistory(),
   routes,
+})
+
+router.beforeEach((to, from, next) => {
+  if ((to.name != 'login') && (!store.state.user.isLogin)) {
+    next({ name: 'login' })
+  } else {
+    next()
+  }
 })
 
 //制定默认进入的页面

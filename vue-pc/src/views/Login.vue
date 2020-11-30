@@ -35,7 +35,7 @@ import { useRouter } from "vue-router";
 import { RulesProp } from "../store/index";
 import { useStore } from "vuex";
 import axios from "axios";
-import util from "@/hooks/util";
+import util from "../hooks/util";
 
 export default defineComponent({
   components: {
@@ -65,7 +65,6 @@ export default defineComponent({
     console.log("登陆前", document.cookie);
     const onFormSubmit = (result: boolean) => {
       if (result) {
-        // console.log(emailVal.value, ":", passWordVal.value);
         axios({
           url: "/cas-server/cas/login/" + "zhuzheng" + "/" + "1",
           method: "get",

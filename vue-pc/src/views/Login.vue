@@ -1,7 +1,6 @@
 <template>
   <!--监听子组件事件函数  -->
   <ValidateForm @form-submit="onFormSubmit">
-
     <div class="mb-3">
       <label class="form-label">电子邮箱地址</label>
       <validate-input
@@ -26,7 +25,6 @@
     <template #submit>
       <span class="btn btn-danger">submit</span>
     </template>
-    
   </ValidateForm>
 </template>
 <script lang="ts">
@@ -34,8 +32,10 @@ import { defineComponent, ref } from "vue";
 import ValidateInput from "../components/form/ValidateInput.vue";
 import ValidateForm from "../components/form/ValidateForm.vue";
 import { useRouter } from "vue-router";
-import { RulesProp } from '../store/index';
-import { useStore } from 'vuex';
+import { RulesProp } from "../store/index";
+import { useStore } from "vuex";
+import axios from "axios";
+import util from "@/hooks/util";
 
 export default defineComponent({
   components: {
@@ -62,11 +62,26 @@ export default defineComponent({
     const passWordVal = ref("11");
 
     const store = useStore();
-
+    console.log("登陆前", document.cookie);
     const onFormSubmit = (result: boolean) => {
       if (result) {
-        router.push("/home");
-        store.commit('login');
+        // console.log(emailVal.value, ":", passWordVal.value);
+        axios({
+          url: "/cas-server/cas/login/" + "zhuzheng" + "/" + "1",
+          method: "get",
+          headers: {
+            "Content-type": "application/json;charset=UTF-8",
+          },
+        })
+          .then((res) => {
+            console.log("登陆后", res.data.data.psw);
+            let token = res.data.data.psw;
+            store.commit("login", util.setCookie("token", token));
+            router.push("/home");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
     };
     return {

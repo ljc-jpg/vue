@@ -15,6 +15,15 @@ export type TagType = 'input' | 'textarea'
 
 export type RulesProp = RuleProp[];
 
+export const token = '';
+
+export const user = {
+  isLogin: false,
+  name: "zhuzheng",
+  id: 1,
+  columnId: 2
+}
+
 export interface ColumnProps {
   id: number;
   title: string;
@@ -92,31 +101,32 @@ export const testData: ColumnProps[] = [
   }
 ]
 
-export const user = {
-  isLogin: false,
-  name: "zhuzheng",
-  id: 1,
-  columnId: 2
-}
 export interface GlobalDataProps {
   columns: ColumnProps[];
   posts: PostProps[];
   user: UserProps;
+  token: string;
 }
 
 export default createStore<GlobalDataProps>({
   state: {
     columns: testData,
     posts: testPosts,
-    user: user
+    user: user,
+    token: token
   },
   //store方法 改变state静态值 外部可以调用
   mutations: {
-    login(state) {
-      state.user.isLogin = true
-    },
     createPost(state, newPost) {
       state.posts.push(newPost);
+    },
+    login(state, token) {
+      state.user.isLogin = true
+      state.token = token;
+    },
+    loginOut(state) {
+      state.user.isLogin = false;
+      state.token = '';
     }
   },
   //相当于vue的计算属性

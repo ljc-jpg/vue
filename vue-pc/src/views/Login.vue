@@ -33,6 +33,7 @@ import ValidateInput from "../components/form/ValidateInput.vue";
 import ValidateForm from "../components/form/ValidateForm.vue";
 import { useRouter } from "vue-router";
 import { RulesProp } from "../store/index";
+import { GlobalDataProps } from "../store/index";
 import { useStore } from "vuex";
 import axios from "axios";
 import util from "../hooks/util";
@@ -54,15 +55,13 @@ export default defineComponent({
 
     //取到子组件方法
     const inputValidRef = ref<any>("");
-
     const router = useRouter();
     //邮箱输入框值
     const emailVal = ref("11@qq.com");
     //密码输入框值
     const passWordVal = ref("11");
 
-    const store = useStore();
-    console.log("登陆前", document.cookie);
+    const store = useStore<GlobalDataProps>();
     const onFormSubmit = (result: boolean) => {
       if (result) {
         axios({
@@ -73,10 +72,9 @@ export default defineComponent({
           },
         })
           .then((res) => {
-            console.log("登陆后", res.data.data.psw);
-            let token = res.data.data.psw;
-            store.commit("login", util.setCookie("token", token));
             router.push("/home");
+            store.commit("login", util.setCookie("token", res.data.data.psw));
+            console.log("token:", store.state.token, "user:", store.state.user);
           })
           .catch((error) => {
             console.log(error);

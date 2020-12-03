@@ -23,8 +23,7 @@ export default defineComponent({
       type: Array as PropType<ColumnProps[]>,
       required: true,
     },
-  },
-  setup(props) {},
+  }
 });
 </script>
 <style scoped>

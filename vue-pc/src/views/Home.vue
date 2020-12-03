@@ -5,7 +5,7 @@
         <img src="../assets/callout.svg" alt="callout" class="w-50" />
         <h2 class="font-weight-light">随心写作，自由表达</h2>
         <p>
-          <a href="create" class="btn btn-primary my-2">开始写文章</a>
+          <a href="#" class="btn btn-primary my-2" @click.prevent="write">开始写文章</a>
         </p>
       </div>
     </div>
@@ -22,6 +22,8 @@ import { defineComponent, computed } from "vue";
 import ColumnList from "../components/header/ColumnList.vue";
 import { useStore } from "vuex";
 import { GlobalDataProps } from "../store/index";
+import store from "../store/index";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   components: {
@@ -29,13 +31,26 @@ export default defineComponent({
   },
   setup() {
     const store = useStore<GlobalDataProps>();
+    const { user, token } = store.state;
     //vuex响应式数据  store最简单获取数据方法 在计算属性中获取
     const list = computed(() => store.state.columns);
     //调用store里getters中的方法
     // const length = computed(()=> store.getters.biggerColumnLength);
+
+    const router = useRouter();
+    const write = () => {
+      console.log('没有登录',{ user, token });
+      if (token) {
+        user.isLogin = true;
+      } else {
+        user.isLogin = false;
+      }
+      router.push("/create");
+    };
     return {
       list,
       // length
+      write,
     };
   },
 });

@@ -16,10 +16,9 @@
           <DropDownItem><a href="/" class="dropdown-item"  @click.prevent="routerLink(`/home`)">主页</a></DropDownItem>
           <DropDownItem><a href="/" class="dropdown-item"  @click.prevent="routerLink(`/create`)">新建文章</a></DropDownItem >
           <DropDownItem><a href="/" class="dropdown-item"  @click.prevent="routerLink(`/column/${user.columnId}`)">我的专栏</a></DropDownItem>
-          <DropDownItem><a href="/" class="dropdown-item"  >退出</a></DropDownItem >
+          <DropDownItem><a href="/" class="dropdown-item"  @click.prevent="routerLink(`login`)">退出</a></DropDownItem >
         </DropDown>
       </li>
-      <!-- :to="`/column/${user.columnId}`" -->
     </ul>
   </nav>
 </template>
@@ -30,6 +29,8 @@ import DropDown from "../dropdown/DropDown.vue";
 import DropDownItem from "../dropdown/DropDownItem.vue";
 import { UserProps } from "../../store/index";
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+import axios from "axios";
 
 export default defineComponent({
   props: {
@@ -40,8 +41,40 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter();
+    const store = useStore();
+
     const routerLink = (data: string) => {
-      router.push(data);
+      if ("login" === data) {
+        axios({
+          url: "/cas-server/cas/loginOut",
+          method: "post",
+          headers: {
+            "Content-type": "application/json;charset=UTF-8",
+          },
+        })
+          .then((res) => {
+            store.commit("loginOut");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        
+
+        axios({
+            url: '/cas-server/user/selectByUser?userId=00b24194dcdb424cb8c403d96875f442',
+            method: 'get',
+            headers: {
+                'Content-type': 'application/json;charset=UTF-8'
+            }
+        }).then(res => {
+
+        }).catch(error => {
+            console.log(error)
+        })
+
+        router.push(data);
+      }
     };
     return {
       routerLink,

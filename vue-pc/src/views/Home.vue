@@ -34,12 +34,9 @@ export default defineComponent({
     const { user, token } = store.state;
     //vuex响应式数据  store最简单获取数据方法 在计算属性中获取
     const list = computed(() => store.state.columns);
-    //调用store里getters中的方法
-    // const length = computed(()=> store.getters.biggerColumnLength);
-
     const router = useRouter();
+    
     const write = () => {
-      console.log('没有登录',{ user, token });
       if (token) {
         user.isLogin = true;
       } else {
@@ -49,7 +46,6 @@ export default defineComponent({
     };
     return {
       list,
-      // length
       write,
     };
   },

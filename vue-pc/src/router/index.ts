@@ -11,8 +11,6 @@ import column from '../views/ColumnDetail.vue'
 
 import create from '../views/Create.vue'
 
-import util from "../hooks/util";
-
 const routes: Array<RouteRecordRaw> = [
   //默认路由地址
   {
@@ -54,29 +52,24 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const { requiredLogin, redirectAlreadyLogin } = to.meta
-  if (util.getCookie('token')) {
-    store.state.user.isLogin = true;
-    store.state.token = util.getCookie('token') as string;
-  }
-  
   const { user, token } = store.state;
   //未登录过
   if ((!user.isLogin)) {
     if (requiredLogin) {
-      console.log('2')
+      console.log(1)
       next('login')
     } else {
-      console.log('3')
+      console.log(2)
       next()
     }
   }
   //登录过
   else {
     if (redirectAlreadyLogin) {
-      console.log('4')
+      console.log(3)
       next('/')
     } else {
-      console.log('5')
+      console.log(4)
       next()
     }
   }

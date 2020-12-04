@@ -12,6 +12,7 @@
 <script lang="ts">
 import { defineComponent, onUnmounted } from "vue";
 import mitt from "mitt";
+
 type ValidateFunc = () => Boolean;
 
 export const emitter = mitt();
@@ -26,9 +27,9 @@ export default defineComponent({
         funcArr.push(func);
       }
     };
-    //创建监听form-item-created事件
+    //插槽间传递事件 创建监听form-item-created事件
     emitter.on("form-item-created", callback);
-    //组件销毁去除form-item-created事件
+    //插槽间传递事件 组件销毁去除form-item-created事件
     onUnmounted(() => {
       emitter.off("form-item-created", callback);
       funcArr = [];
@@ -39,7 +40,6 @@ export default defineComponent({
       const result = funcArr.map((func) => func()).every((result) => result);
       context.emit("form-submit", result);
     };
-
     return {
       submitForm,
     };

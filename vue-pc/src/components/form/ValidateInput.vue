@@ -30,8 +30,7 @@
 <script lang="ts">
 import { defineComponent, reactive, PropType, onMounted } from "vue";
 import { emitter } from "./ValidateForm.vue";
-import { RulesProp } from "../../store/index";
-import { TagType } from "../../store/index";
+import { RulesProp,TagType } from "../../store/index";
 
 const emailReg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
 
@@ -79,7 +78,8 @@ export default defineComponent({
       inputRef.val = targetValue;
       context.emit("update:modelValue", targetValue);
     };
-    //创建输入框判断事件
+
+    //插槽间传递事件 创建输入框判断事件
     onMounted(() => {
       emitter.emit("form-item-created", valiDateInput);
     });

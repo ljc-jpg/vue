@@ -1,6 +1,7 @@
 <template>
   <!--监听子组件事件函数  -->
   <ValidateForm @form-submit="onFormSubmit">
+
     <div class="mb-3">
       <label class="form-label">电子邮箱地址</label>
       <validate-input
@@ -25,6 +26,7 @@
     <template #submit>
       <span class="btn btn-danger">submit</span>
     </template>
+
   </ValidateForm>
 </template>
 <script lang="ts">
@@ -36,7 +38,6 @@ import { RulesProp } from "../store/index";
 import { GlobalDataProps } from "../store/index";
 import { useStore } from "vuex";
 import axios from "axios";
-import util from "../hooks/util";
 
 export default defineComponent({
   components: {
@@ -55,12 +56,12 @@ export default defineComponent({
 
     //取到子组件方法
     const inputValidRef = ref<any>("");
-    const router = useRouter();
     //邮箱输入框值
     const emailVal = ref("11@qq.com");
     //密码输入框值
     const passWordVal = ref("11");
 
+    const router = useRouter();
     const store = useStore<GlobalDataProps>();
     const onFormSubmit = (result: boolean) => {
       if (result) {
@@ -73,8 +74,7 @@ export default defineComponent({
         })
           .then((res) => {
             router.push("/home");
-            store.commit("login", util.setCookie("token", res.data.data.psw));
-            console.log("token:", store.state.token, "user:", store.state.user);
+            store.commit("login", res.data.data.psw);
           })
           .catch((error) => {
             console.log(error);

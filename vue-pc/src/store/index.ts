@@ -6,16 +6,6 @@ export interface UserProps {
   id?: number;
   columnId?: number
 }
-export interface RuleProp {
-  type: "required" | "email";
-  message: string;
-}
-
-export type TagType = 'input' | 'textarea'
-
-export type RulesProp = RuleProp[];
-
-export const token = '';
 
 export const user = {
   isLogin: false,
@@ -24,6 +14,31 @@ export const user = {
   columnId: 2
 }
 
+export interface RuleProp {
+  type: "required" | "email";
+  message: string;
+}
+
+export interface IndexProps {
+  dom: string;
+  login: string;
+  casIndex: string;
+  goodsIndex: string;
+}
+
+export const indexs = {
+  dom: '/api',
+  login: 'http://127.0.0.1:8762/cas-server/login',
+  casIndex: 'http://127.0.0.1:8762/cas-server/index',
+  goodsIndex: 'http://127.0.0.1:8762/goods-server/index',
+}
+
+export type RulesProp = RuleProp[];
+
+export type TagType = 'input' | 'textarea'
+
+export const token = '';
+
 export interface ColumnProps {
   id: number;
   title: string;
@@ -31,6 +46,32 @@ export interface ColumnProps {
   avatar?: string;
 }
 
+export const testData: ColumnProps[] = [
+  {
+    id: 1,
+    title: 'test1的专栏',
+    description: '这是的test1专栏，有一段非常有意思的简介，可以更新一下欧, 这是的test1专栏，有一段非常有意思的简介，可以更新一下欧',
+    avatar: "https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg",
+  },
+  {
+    id: 2,
+    title: 'test2的专栏',
+    description: '这是的test2专栏，有一段非常有意思的简介，可以更新一下欧',
+    avatar: "https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg",
+  },
+  {
+    id: 3,
+    title: 'test3的专栏',
+    description: '这是的test1专栏，有一段非常有意思的简介，可以更新一下欧 这是的test1专栏，有一段非常有意思的简介，可以更新一下欧',
+    avatar: "https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg",
+  },
+  {
+    id: 4,
+    title: 'test4的专栏',
+    description: '这是的test2专栏，有一段非常有意思的简介，可以更新一下欧',
+    avatar: "https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg",
+  }
+]
 export interface PostProps {
   id: number;
   title: string;
@@ -74,38 +115,12 @@ export const testPosts: PostProps[] = [
   }
 ]
 
-export const testData: ColumnProps[] = [
-  {
-    id: 1,
-    title: 'test1的专栏',
-    description: '这是的test1专栏，有一段非常有意思的简介，可以更新一下欧, 这是的test1专栏，有一段非常有意思的简介，可以更新一下欧',
-    avatar: "https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg",
-  },
-  {
-    id: 2,
-    title: 'test2的专栏',
-    description: '这是的test2专栏，有一段非常有意思的简介，可以更新一下欧',
-    avatar: "https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg",
-  },
-  {
-    id: 3,
-    title: 'test3的专栏',
-    description: '这是的test1专栏，有一段非常有意思的简介，可以更新一下欧 这是的test1专栏，有一段非常有意思的简介，可以更新一下欧',
-    avatar: "https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg",
-  },
-  {
-    id: 4,
-    title: 'test4的专栏',
-    description: '这是的test2专栏，有一段非常有意思的简介，可以更新一下欧',
-    avatar: "https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg",
-  }
-]
-
 export interface GlobalDataProps {
   columns: ColumnProps[];
   posts: PostProps[];
   user: UserProps;
   token: string;
+  Index: IndexProps;
 }
 
 export default createStore<GlobalDataProps>({
@@ -113,7 +128,8 @@ export default createStore<GlobalDataProps>({
     columns: testData,
     posts: testPosts,
     user: user,
-    token: token
+    token: token,
+    Index: indexs
   },
   //store方法 改变state静态值 外部可以调用
   mutations: {

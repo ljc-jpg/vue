@@ -4,17 +4,14 @@
 
 <script lang="ts">
 import store from "./store/index";
+import axios from "axios";
 
 export default {
-  name: "App",
   created() {
-    // 在页面刷新时将vuex里的信息保存到sessionStorage里
-    // beforeunload事件在页面刷新时先触发
+    //刷新store里数据状态不变   beforeunload事件在页面刷新前触发
     window.addEventListener("beforeunload", () => {
       localStorage.setItem("store", JSON.stringify(store.state));
     });
-
-    // 在页面加载时读取sessionStorage里的状态信息
     if (localStorage.getItem("store")) {
       store.replaceState(
         Object.assign(
@@ -24,13 +21,31 @@ export default {
         )
       );
       localStorage.removeItem("store");
-      console.log("11111111111",store.state)
     }
+
+    //关闭页面用户登出
+    window.onbeforeunload = function (event: Event) {
+      if (store.state.user.isLogin) {
+        return;
+      }
+      axios({
+        url: "/cas-server/cas/loginOut",
+        method: "post",
+        headers: {
+          "Content-type": "application/json;charset=UTF-8",
+        },
+      })
+        .then((res) => {
+          store.commit("loginOut");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
   },
-
-
 };
 </script>
+
 <style lang="scss">
 html,
 body,

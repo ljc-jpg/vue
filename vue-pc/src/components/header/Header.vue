@@ -61,17 +61,17 @@ export default defineComponent({
       } else {
         
 
-        axios({
-            url: '/cas-server/user/selectByUser?userId=00b24194dcdb424cb8c403d96875f442',
-            method: 'get',
-            headers: {
-                'Content-type': 'application/json;charset=UTF-8'
-            }
-        }).then(res => {
-
-        }).catch(error => {
-            console.log(error)
-        })
+        // axios({
+        //     url: '/cas-server/user/selectByUser?userId=00b24194dcdb424cb8c403d96875f442',
+        //     method: 'get',
+        //     headers: {
+        //         'Content-type': 'application/json;charset=UTF-8'
+        //     }
+        // }).then(res => {
+        //   console.log(res)
+        // }).catch(error => {
+        //     console.log(error)
+        // })
 
         router.push(data);
       }

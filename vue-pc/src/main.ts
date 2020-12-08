@@ -9,13 +9,17 @@ axios.defaults.baseURL = '/api';
 
 //axios http request拦截器
 axios.interceptors.request.use(config => {
-    return config;
+  return config;
 });
 
-axios.interceptors.response.use(config => {
-    return config 
-  }, e => {
-    return Promise.reject(e.response.data)
-})
+axios.interceptors.response.use(
+  response => {
+    const data = response.data;
+    return data
+  },
+  error => {
+    return Promise.reject(error)
+  }
+)
 
 createApp(App).use(store).use(router).mount('#app')

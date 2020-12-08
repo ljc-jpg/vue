@@ -57,16 +57,18 @@ export default defineComponent({
     //取到子组件方法
     const inputValidRef = ref<any>("");
     //邮箱输入框值
-    const emailVal = ref("11@qq.com");
+    const emailVal = ref("zhuzheng@qq.com");
     //密码输入框值
-    const passWordVal = ref("11");
+    const passWordVal = ref("1");
 
     const router = useRouter();
     const store = useStore<GlobalDataProps>();
     const onFormSubmit = (result: boolean) => {
       if (result) {
+        console.log("/cas-server/cas/login/zhuzheng" +  "/" + passWordVal.value)
         axios({
-          url: "/cas-server/cas/login/" + "zhuzheng" + "/" + "1",
+          //url: "/cas-server/cas/login/" + emailVal + "/" + passWordVal ,
+          url: "/cas-server/cas/login/zhuzheng" +  "/" + passWordVal.value ,
           method: "get",
           headers: {
             "Content-type": "application/json;charset=UTF-8",

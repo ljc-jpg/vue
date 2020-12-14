@@ -3,12 +3,12 @@
     <div class="column-info row mb-4 border-bottom pb-4 align-items-center" v-if="column" >
 
       <div class="col-3 text-center">
-        <img :src="column.avatar" :alt="column.title" class="rounded-circle border w-100" />
+        <img :src="column.banner" :alt="column.title" class="rounded-circle border w-100" />
       </div>
 
       <div class="col-9">
         <h4>{{ column.title }}</h4>
-        <p class="text-muted"> {{ column.description }} </p>
+        <p class="text-muted"> {{ column.articleContent }} </p>
       </div>
     </div>
 

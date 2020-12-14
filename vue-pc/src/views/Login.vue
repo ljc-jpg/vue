@@ -1,7 +1,6 @@
 <template>
   <!--监听子组件事件函数  -->
   <ValidateForm @form-submit="onFormSubmit">
-
     <div class="mb-3">
       <label class="form-label">电子邮箱地址</label>
       <validate-input
@@ -26,7 +25,6 @@
     <template #submit>
       <span class="btn btn-danger">submit</span>
     </template>
-
   </ValidateForm>
 </template>
 <script lang="ts">
@@ -65,18 +63,18 @@ export default defineComponent({
     const store = useStore<GlobalDataProps>();
     const onFormSubmit = (result: boolean) => {
       if (result) {
-        console.log("/cas-server/cas/login/zhuzheng" +  "/" + passWordVal.value)
         axios({
-          //url: "/cas-server/cas/login/" + emailVal + "/" + passWordVal ,
-          url: "/cas-server/cas/login/zhuzheng" +  "/" + passWordVal.value ,
+          url: "/cas-server/cas/login/zhuzheng" + "/" + passWordVal.value,
           method: "get",
           headers: {
             "Content-type": "application/json;charset=UTF-8",
           },
         })
           .then((res) => {
+            // console.log("登录后数据", res.data.articles);
             router.push("/home");
-            store.commit("login", res.data.data.psw);
+            store.commit("pushColumns", res.data.articles);
+            store.commit("login", res.data.psw);
           })
           .catch((error) => {
             console.log(error);

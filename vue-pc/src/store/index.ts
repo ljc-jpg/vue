@@ -57,24 +57,6 @@ export const testData: ColumnProps[] = [
     title: 'test1的专栏',
     articleContent: '这是的test1专栏，有一段非常有意思的简介，可以更新一下欧, 这是的test1专栏，有一段非常有意思的简介，可以更新一下欧',
     banner: "https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg",
-  },
-  {
-    articleId: 2,
-    title: 'test2的专栏',
-    articleContent: '这是的test2专栏，有一段非常有意思的简介，可以更新一下欧',
-    banner: "https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg",
-  },
-  {
-    articleId: 3,
-    title: 'test3的专栏',
-    articleContent: '这是的test1专栏，有一段非常有意思的简介，可以更新一下欧 这是的test1专栏，有一段非常有意思的简介，可以更新一下欧',
-    banner: "https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg",
-  },
-  {
-    articleId: 4,
-    title: 'test4的专栏',
-    articleContent: '这是的test2专栏，有一段非常有意思的简介，可以更新一下欧',
-    banner: "https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg",
   }
 ]
 
@@ -141,7 +123,12 @@ export default createStore<GlobalDataProps>({
     loginOut(state) {
       state.user.isLogin = false;
       state.token = '';
-    }
+      state.columns = [];
+    },
+    pushColumns(state, column: ColumnProps[]) {
+      state.columns = JSON.parse(JSON.stringify(state.columns.concat(column)))
+    },
+
   },
   //相当于vue的计算属性
   getters: {

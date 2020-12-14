@@ -48,6 +48,7 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  
 })
 
 router.beforeEach((to, from, next) => {
@@ -56,20 +57,16 @@ router.beforeEach((to, from, next) => {
   //未登录过
   if ((!user.isLogin)) {
     if (requiredLogin) {
-      console.log(1)
       next('login')
     } else {
-      console.log(2)
       next()
     }
   }
   //登录过
   else {
     if (redirectAlreadyLogin) {
-      console.log(3)
       next('/')
     } else {
-      console.log(4)
       next()
     }
   }

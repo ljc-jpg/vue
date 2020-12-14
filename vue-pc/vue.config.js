@@ -1,6 +1,5 @@
 module.exports = {
-    // publicPath:process.env.NODE_ENV === 'production' ? '/vue_workspac/aihuhuproject/' : '/',
-
+    publicPath : process.env.NODE_ENV ===  '/',
     //引用路径
     publicPath: "./",
     //打包后是否生成.map文件

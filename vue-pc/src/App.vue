@@ -4,7 +4,6 @@
 
 <script lang="ts">
 import store from "./store/index";
-import axios from "axios";
 
 export default {
   created() {
@@ -24,24 +23,24 @@ export default {
     }
 
     //关闭页面用户登出
-    window.onbeforeunload = function (event: Event) {
-      if (store.state.user.isLogin) {
-        return;
-      }
-      axios({
-        url: "/cas-server/cas/loginOut",
-        method: "post",
-        headers: {
-          "Content-type": "application/json;charset=UTF-8",
-        },
-      })
-        .then((res) => {
-          store.commit("loginOut");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
+    // window.onbeforeunload = function (event: Event) {
+    //   if (store.state.user.isLogin) {
+    //     return;
+    //   }
+    //   axios({
+    //     url: "/cas-server/cas/loginOut",
+    //     method: "post",
+    //     headers: {
+    //       "Content-type": "application/json;charset=UTF-8",
+    //     },
+    //   })
+    //     .then((res) => {
+    //       store.commit("loginOut");
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // };
   },
 };
 </script>
